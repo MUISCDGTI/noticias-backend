@@ -1,0 +1,160 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "Noticias API",
+      "description": "API para el microservicio noticias del proyecto de FIS"
+    },
+    "host": "localhost:3000",
+    "basePath": "/api/v1",
+    "tags": [
+      {
+        "name": "News",
+        "description": "API for news in the system"
+      }
+    ],
+    "schemes": [
+      "http"
+    ],
+    "consumes": [
+      "application/json"
+    ],
+    "produces": [
+      "application/json"
+    ],
+    "paths": {
+      "/news": {
+        "post": {
+          "tags": [
+            "News"
+          ],
+          "description": "Create news",
+          "parameters": [
+            {
+              "name": "user",
+              "in": "body",
+              "description": "User that we want to create",
+              "schema": {
+                "$ref": "#/definitions/News"
+              }
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "New news item is created",
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          }
+        },
+        "get": {
+          "tags": [
+            "News"
+          ],
+          "summary": "Get all news in system",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/News"
+              }
+            }
+          }
+        }
+      },
+      "/news/{newsId}": {
+        "parameters": [
+          {
+            "name": "newsId",
+            "in": "path",
+            "required": true,
+            "description": "ID of a news item that we want to find",
+            "type": "string"
+          }
+        ],
+        "get": {
+          "tags": [
+            "News"
+          ],
+          "summary": "Get a news item with given ID",
+          "responses": {
+            "200": {
+              "description": "News item is found",
+              "schema": {
+                "$ref": "#/definitions/News"
+              }
+            }
+          }
+        },
+        "delete": {
+          "summary": "Delete news item with given ID",
+          "tags": [
+            "News"
+          ],
+          "responses": {
+            "200": {
+              "description": "News item is deleted",
+              "schema": {
+                "$ref": "#/definitions/News"
+              }
+            }
+          }
+        },
+        "put": {
+          "summary": "Update a news item with give ID",
+          "tags": [
+            "News"
+          ],
+          "parameters": [
+            {
+              "name": "news",
+              "in": "body",
+              "description": "News item with new values of properties",
+              "schema": {
+                "$ref": "#/definitions/News"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "News item is updated",
+              "schema": {
+                "$ref": "#/definitions/News"
+              }
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "News": {
+        "required": [
+          "_id"
+        ],
+        "properties": {
+          "_id": {
+            "type": "string",
+            "uniqueItems": true
+          },
+          "newsTitle": {
+            "type": "string",
+            "uniqueItems": true
+          },
+          "newsAuthor": {
+            "type": "string"
+          },
+          "publishedAt": {
+            "type": "string"
+          }
+        }
+      },
+      "News": {
+        "type": "array",
+        "$ref": "#/definitions/News"
+      }
+    }
+  }
