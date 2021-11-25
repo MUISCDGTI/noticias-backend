@@ -8,7 +8,7 @@ router.use(function timeLog(req, res, next) {
 });
 
 router.get('/', (req, res) => {
-    News.find((err, news) => {
+    News.find(req.query, (err, news) => {
         if (err) { return res.sendStatus(404); }
         res.json(news);
     });
