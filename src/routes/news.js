@@ -25,7 +25,7 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
     News.create(req.body, function (err, news) {
-        if (err) return next(err);
+        if (err) return res.sendStatus(400);
         res.json(news)
     });
 });
