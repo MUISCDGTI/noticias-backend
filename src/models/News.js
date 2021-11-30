@@ -5,7 +5,8 @@ var newsSchema = new mongoose.Schema({
   description: String,
   text: {type: String, required: true},
   author: {type: String, required: true},
-  createdAt: {type: Date, default: Date.now}
+  createdAt: {type: Date, default: Date.now},
+  relatedMovies: {type: Array, default: []}
 });
 
 module.exports = mongoose.model('News', newsSchema);
