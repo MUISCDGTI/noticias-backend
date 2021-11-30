@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
-const DB_URL = ('mongodb://localhost/news');
+var config = require('../config/config');
+
+const DB_URL = config.DB_URL;
 
 const dbConnect = function() {
     const db = mongoose.connection;
