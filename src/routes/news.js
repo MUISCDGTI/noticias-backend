@@ -40,7 +40,11 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
     News.findByIdAndRemove(req.params.id, (err, news) => {
         if (err) { return res.sendStatus(404); }
-        res.json(news);
+        if (news != null) { 
+            res.json(news); 
+        } else {
+            res.sendStatus(404);
+        }
     });
 });
 
