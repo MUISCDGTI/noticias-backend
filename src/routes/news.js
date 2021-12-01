@@ -18,7 +18,7 @@ router.get('/:id', (req, res) => {
     if (req.body) {
         News.findById(req.params.id).then((news) => {
             if (news == null) { return res.sendStatus(404); }
-            res.status(200).json({ news: news })
+            res.status(200).json(news);
         })
     }
 });
@@ -26,7 +26,7 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
     News.create(req.body, function (err, news) {
         if (err) return res.sendStatus(400);
-        res.status(201).json(news)
+        res.status(201).json(news);
     });
 });
 
