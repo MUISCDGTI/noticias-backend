@@ -1,11 +1,12 @@
 var mongoose = require('mongoose');
 
 var newsSchema = new mongoose.Schema({
-  _id: {type:String, required: true},
-  newsTitle: String,
-  newsText: String,
-  newsAuthor: String,
-  newsDate: Date
+  title: {type: String, required: true},
+  description: String,
+  text: {type: String, required: true},
+  author: {type: String, required: true},
+  createdAt: {type: Date, default: Date.now},
+  relatedMovies: {type: Array, default: []}
 });
 
 module.exports = mongoose.model('News', newsSchema);
