@@ -3,7 +3,7 @@ var swaggerUi = require('swagger-ui-express'),
     swaggerDocument = require('./swagger.json');
 
 var news = require('./routes/news')
-var health = require('./routes/health')
+var health = require('./routes/healthz')
 
 const API_BASE_PATH = '/api/v1'
 
