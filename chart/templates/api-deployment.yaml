@@ -25,3 +25,13 @@ spec:
             - name: http
               containerPort: 3000
               protocol: TCP
+          readinessProbe:
+            periodSeconds: 1
+            httpGet:
+              path: /api/v1/healthz
+              port: 3000
+          livenessProbe:
+            periodSeconds: 1
+            httpGet:
+              path: /api/v1/healthz
+              port: 3000
