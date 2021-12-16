@@ -11,7 +11,6 @@ var app = express();
 
 app.use(express.json());
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-
 app.use(API_BASE_PATH + '/news', news);
 app.use(API_BASE_PATH, health);
 
