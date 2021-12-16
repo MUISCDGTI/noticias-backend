@@ -11,7 +11,9 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
+    "express-circuit-breaker": "^1.1.1",
     "mongoose": "^6.0.13",
+    "opossum": "^6.2.1",
     "request-promise-native": "^1.0.9",
     "swagger-ui-express": "^4.1.6"
   }
