@@ -16,15 +16,15 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
     if (req.body) {
-        News.findById(req.params.id).then((news) => {
-            if (news == null) { return res.sendStatus(404); }
+        News.findById(req.params.id, (err, news) => {
+            if (news == null || err) { return res.sendStatus(404); }
             res.status(200).json(news);
-        })
+        });
     }
 });
 
 router.post('/', (req, res) => {
-    News.create(req.body, function (err, news) {
+    News.create(req.body, (err, news) => {
         if (err) return res.sendStatus(400);
         res.status(201).json(news);
     });
@@ -40,7 +40,7 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
     News.findByIdAndRemove(req.params.id, (err, news) => {
         if (err || news == null) { return res.sendStatus(404); }
-        res.status(200).json(news); 
+        res.status(200).json(news);
     });
 });
 
