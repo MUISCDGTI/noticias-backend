@@ -1,5 +1,5 @@
 apiVersion: v2
-name: fis-noticias-backend
+name: noticias-backend
 description: A backend for news
 type: application
 version: 0.1.0
