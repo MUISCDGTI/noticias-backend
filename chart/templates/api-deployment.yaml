@@ -22,9 +22,9 @@ spec:
         - name: api
           image: {{ .Values.api.image }}:{{ .Values.tag }}
           env:
-            -name: MONGO_URL
+            - name: MONGO_URL
               valueFrom:
-                secretKeyRef: 
+                secretKeyRef:
                   name: mongodb
                   key: noticias_mongo_url
           ports:
