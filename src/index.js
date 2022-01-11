@@ -7,7 +7,7 @@ const HOST = config.HOST;
 
 console.log("Starting API server at "+ PORT);
 
-dbConnect().then(
+/**dbConnect().then(
     () => {
         app.listen(PORT, HOST);
         console.log("Server ready!");
@@ -15,4 +15,4 @@ dbConnect().then(
     err => {
         console.log("Connection error: "+err);
     }
-)
+)**/
