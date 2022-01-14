@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 var config = require('../config/config');
 
-const DB_URL = config.DB_URL;
+const DB_URL = config.MONGO_URL;
 
 const dbConnect = function() {
     const db = mongoose.connection;
