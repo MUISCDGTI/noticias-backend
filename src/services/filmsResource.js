@@ -23,6 +23,14 @@ class FilmsResource {
         return request.get(url, options);
     }
 
+    static getRelatedFilms(filmTitle) {
+        const url = FilmsResource.filmsUrl('/films?title=' + filmTitle);
+        const options = {
+            headers: FilmsResource.requestHeaders()
+        }
+        return request.get(url, options);
+    }
+
 }
 
 module.exports = FilmsResource;
