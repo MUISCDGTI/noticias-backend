@@ -20,4 +20,4 @@ jobs:
         uses: okteto/pipeline@latest
         with:
           name: noticias-backend
-          namespace: fis-josmunpen
+          namespace: fis-josenggn
