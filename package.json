@@ -14,9 +14,12 @@
     "express": "^4.17.1",
     "mongoose": "^6.0.13",
     "opossum": "^6.3.0",
+    "passport": "^0.5.2",
+    "passport-localapikey-update": "^0.6.0",
     "request-promise-native": "^1.0.9",
     "swagger-ui-express": "^4.1.6",
-    "url-join": "^4.0.1"
+    "url-join": "^4.0.1",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "jest": "^27.4.7",

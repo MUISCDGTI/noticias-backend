@@ -4,6 +4,9 @@ var swaggerUi = require('swagger-ui-express'),
 
 var news = require('./routes/news')
 var health = require('./routes/health')
+require('./passport.js')
+
+const passport = require('passport');
 
 var cors = require('cors')
 
@@ -16,6 +19,7 @@ const API_BASE_PATH = '/api/v1'
 
 var app = express();
 
+app.use(passport.initialize());
 app.use(cors(corsOptions))
 app.use(express.json());
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
