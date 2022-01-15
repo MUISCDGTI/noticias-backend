@@ -9,7 +9,7 @@ COPY package*.json ./
 RUN npm install
 
 COPY . .
-COPY swagger.json
+COPY swagger.json .
 
 EXPOSE 3000
 CMD npm start
