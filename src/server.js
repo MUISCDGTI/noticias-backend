@@ -8,7 +8,8 @@ var health = require('./routes/health')
 var cors = require('cors')
 
 var corsOptions = {
-    methods: ['GET', 'PUT', 'POST', 'DELETE', 'OPTIONS']
+    methods: ['GET', 'PUT', 'POST', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
 }
 
 const API_BASE_PATH = '/api/v1'
