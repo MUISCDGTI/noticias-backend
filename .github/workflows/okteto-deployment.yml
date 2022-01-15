@@ -5,7 +5,10 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+  test:
+    uses: MUISCDGTI/noticias-backend/.github/workflows/tests.yml@main
+  deploy:
+    needs: test
     runs-on: ubuntu-latest
 
     steps:
