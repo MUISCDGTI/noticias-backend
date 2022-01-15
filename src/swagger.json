@@ -46,7 +46,7 @@
             "200": {
               "description": "New news item is created",
               "schema": {
-                "$ref": "#/definitions/User"
+                "$ref": "#/definitions/News"
               }
             }
           }
