@@ -1,6 +1,6 @@
 var express = require('express');
 var swaggerUi = require('swagger-ui-express'),
-    swaggerDocument = require('./swagger.json');
+    swaggerDocument = require('../swagger.json');
 
 var news = require('./routes/news')
 var health = require('./routes/health')
