@@ -11,8 +11,9 @@ const API_BASE_PATH = '/api/v1'
 
 var app = express();
 
+app.use(cors())
 app.use(express.json());
-app.use('/api-docs', cors(), swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use(API_BASE_PATH + '/news', news);
 app.use(API_BASE_PATH, health);
 
