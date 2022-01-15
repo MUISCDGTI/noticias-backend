@@ -18,7 +18,7 @@ describe("News API", () => {
 
     describe("GET /news", () => {
 
-        beforeAll(() => {
+        beforeEach(() => {
 
             const news = [
                 {
