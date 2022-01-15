@@ -14,7 +14,6 @@ describe("GET /", () => {
     });
   });
 
-/** 
 describe("News API", () => {
 
     describe("GET /news", () => {
@@ -23,31 +22,19 @@ describe("News API", () => {
 
             const news = [
                 {
-                    id: 1,
                     title: "Nueva pelicula de Spiderman",
                     text: "Proximamente en cines estará disponible la nueva película de Spiderman",
-                    createdAt: "2021-09-21T00:00:00.000Z",
                     author: "Jose Enrique",
-                    tags: ["Accion", "Terror"],
-                    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/640px-Image_created_with_a_mobile_phone.png"
                 },
                 {
-                    id: 2,
                     title: "Nueva pelicula de Batman",
                     text: "Proximamente en cines estará disponible la nueva película de Batman",
-                    createdAt: "2021-09-21T00:00:00.000Z",
                     author: "Jose Enrique",
-                    tags: ["Accion"],
-                    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/640px-Image_created_with_a_mobile_phone.png"
                 },
                 {
-                    id: 3,
                     title: "Nueva pelicula de Nolan",
                     text: "Proximamente en cines estará disponible la nueva película de Nolan",
-                    createdAt: "2021-09-21T00:00:00.000Z",
                     author: "Jose Manuel",
-                    tags: ["Accion", "Terror"],
-                    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/640px-Image_created_with_a_mobile_phone.png"
                 },
             ];
 
@@ -72,4 +59,4 @@ describe("News API", () => {
                 });
         });
     });
-});*/
+});
