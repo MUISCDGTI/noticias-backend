@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
@@ -16,5 +16,10 @@
     "request-promise-native": "^1.0.9",
     "swagger-ui-express": "^4.1.6",
     "url-join": "^4.0.1"
+  },
+  "devDependencies": {
+    "jest": "^27.4.7",
+    "jest-extended": "^1.2.0",
+    "supertest": "^6.2.1"
   }
 }

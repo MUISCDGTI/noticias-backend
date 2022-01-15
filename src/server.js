@@ -14,4 +14,10 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use(API_BASE_PATH + '/news', news);
 app.use(API_BASE_PATH, health);
 
+const filmServ = require('./services/relatedFilmsService.js')
+
+app.use('/prueba', (req, res) => {
+   filmServ()
+});
+
 module.exports = app;
