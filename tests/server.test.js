@@ -38,10 +38,6 @@ describe("News API", () => {
 
                     expect(response.statusCode).toBe(200);
 
-                    expect(dbFind).toBeCalledWith({}, expect.any(Function));
-
-                    expect(response => { console.log(response) })
-
                 });
         });
     });
