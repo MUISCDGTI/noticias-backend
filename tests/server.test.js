@@ -26,7 +26,7 @@ describe("News API", () => {
             ];
 
             dbFind = jest.spyOn(News, "find");
-            dbFind.mockImplementation((query, callback) => {
+            dbFind.mockImplementation((query, sm, sort, callback) => {
                 callback(null, news);
             });
         });
