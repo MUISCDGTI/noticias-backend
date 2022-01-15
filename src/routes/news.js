@@ -8,8 +8,11 @@ router.use(function timeLog(req, res, next) {
 });
 
 router.get('/', (req, res) => {
-    News.find((err, news) => {
-        if (err) { return res.sendStatus(404); }
+    News.find(req.query, (err, news) => {
+        if (err) { 
+            console.log(Date() + " - " + err);
+            res.sendStatus(404);
+        }
         res.status(200).json(news);
     })
 });
