@@ -22,10 +22,11 @@ describe("News API", () => {
                     text: "Proximamente en cines estará disponible la nueva película de Spiderman",
                     author: "Jose Enrique",
                 }
+
             ];
 
             dbFind = jest.spyOn(News, "find");
-            dbFind.mockImplementation((query, sm, sort, callback) => {
+            dbFind.mockImplementation((query, callback) => {
                 callback(null, news);
             });
         });
@@ -35,9 +36,8 @@ describe("News API", () => {
             return request(app)
                 .get("/api/v1/news")
                 .then((response) => {
-
                     expect(response.statusCode).toBe(200);
-
+                    expect(dbFind).toBeCalledWith({}, expect.any(Function));
                 });
         });
     });
