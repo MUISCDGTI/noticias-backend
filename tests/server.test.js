@@ -1,5 +1,5 @@
-const News = require("../src/models/News");
-const app = require("../src/server");
+const News = require("../src/models/New.js");
+const app = require("../src/server.js");
 const request = require("supertest");
 
 describe("Hello world test", () => {
