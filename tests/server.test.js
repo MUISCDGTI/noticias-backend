@@ -1,4 +1,4 @@
-const News = require("../src/models/New.js");
+const News = require("../src/models/News.js");
 const app = require("../src/server.js");
 const request = require("supertest");
 
