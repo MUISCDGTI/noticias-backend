@@ -5,7 +5,7 @@
       "title": "Noticias API",
       "description": "API para el microservicio noticias del proyecto de FIS"
     },
-    "host": "localhost:3000",
+    "host": "https://api-fis-josenggn.cloud.okteto.net",
     "basePath": "/api/v1",
     "tags": [
       {
