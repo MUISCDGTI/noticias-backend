@@ -14,4 +14,8 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use(API_BASE_PATH + '/news', news);
 app.use(API_BASE_PATH, health);
 
+app.get("/", (req, res) => {
+    res.send("<html><body><h1>My server</h1></body></html>");
+});
+
 module.exports = app;

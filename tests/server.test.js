@@ -2,17 +2,18 @@ const News = require("../src/models/News.js");
 const app = require("../src/server.js");
 const request = require("supertest");
 
-describe("Hello world test", () => {
-
-    it("Should do a test", () => {
-        const a = 5;
-        const b = 3;
-        const sum = a + b;
-
-        expect(sum).toBe(8);
+describe("GET /", () => {
+    it("should return an HTML document", () => {
+      return request(app)
+        .get("/")
+        .then((response) => {
+          expect(response.status).toBe(200);
+          expect(response.type).toEqual(expect.stringContaining("html"));
+          expect(response.text).toEqual(expect.stringContaining("h1"));
+        });
     });
+  });
 
-});
 
 describe("News API", () => {
 
