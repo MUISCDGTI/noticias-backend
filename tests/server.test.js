@@ -268,7 +268,7 @@ describe("News API", () => {
               };
         
     
-            dbDelete = jest.spyOn(News, "findByIdAndRemove");
+            dbDelete = jest.spyOn(News, "deleteOne");
 
             auth = jest.spyOn(ApiKey, "findOne");
             auth.mockImplementation((query, callback) => {
