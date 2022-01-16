@@ -46,9 +46,9 @@ const breaker = new CircuitBreaker(NotificationsResource.notifyNotificationsServ
 
 breaker.fallback(() => 'El servicio no está funcionando correctamente.');
 
-breaker.on('reject')
-breaker.on('open')
-breaker.on('halfOpen')
+breaker.on('reject', (result) => console.log("El circuito está cerrado"))
+breaker.on('open', (result) => console.log("El circuito está abierto"))
+breaker.on('halfOpen', (result) => console.log("El circuito está medio abierto"))
 
 
 module.exports = NotificationsResource;
