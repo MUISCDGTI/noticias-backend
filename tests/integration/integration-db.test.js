@@ -19,7 +19,6 @@ describe('News DB connection', () => {
             expect(err).toBeNull();
             News.find({}, (err, news) => {
                 expect(news).toBeArrayOfSize(1);
-                done();
             });
         });
     });
