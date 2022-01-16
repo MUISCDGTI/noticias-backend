@@ -251,4 +251,52 @@ describe("News API", () => {
             });
         });
       });
+
+      describe("DELETE /news", () => {
+        beforeAll(() => {
+  
+            const news = {
+                _id: "1",
+                title: "Nueva pelicula de Spiderman",
+                text: "Proximamente en cines estará disponible la nueva película de Spiderman",
+                author: "Jose Enrique"
+            };
+    
+            dbDelete = jest.spyOn(News, "findByIdAndRemove");
+        });
+  
+        it("should delete a news item by id", () => {
+          dbDelete.mockImplementation((id, callback) => {
+            callback(null, news);
+          });
+          return request(app)
+            .delete("/api/v1/news/1")
+            .set('apikey', '1')
+            .then((response) => {
+              expect(response.statusCode).toBe(200);
+              expect(dbDelete).toBeCalledWith(
+                { _id: "1" },
+                expect.any(Function)
+              );
+            });
+        });
+  
+        it("should not delete a news item because is does not exist", () => {
+          dbDelete.mockImplementation((r, callback) => {
+            callback(null, news);
+          });
+          return request(app)
+            .delete("/api/v1/news/2")
+            .set('apikey', '1')
+            .then((response) => {
+              expect(response.statusCode).toBe(500);
+              expect(dbDelete).toBeCalledWith(
+                { _id: "2" },
+                expect.any(Function)
+              );
+            });
+        });
+  
+  
+      });
 });
