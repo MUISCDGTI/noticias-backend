@@ -80,7 +80,7 @@ router.delete('/:id', passport.authenticate('localapikey', {session:false}), (re
     const id = req.params.id;
 
     News.findOneAndRemove({ _id: id }, (err, news) => {
-        if (err || news == null) {
+        if (err || !news) {
             console.log(Date() + " - " + err);
       
             if (err.errors) {
