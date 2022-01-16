@@ -4,7 +4,7 @@ const News = require('../../src/models/News')
 
 describe('News DB connection', () => {
     beforeAll(() => {
-        return dbConnect();
+        dbConnect();
     })
 
     beforeEach((done) => {
