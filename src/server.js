@@ -5,7 +5,6 @@ var swaggerUi = require('swagger-ui-express'),
 var news = require('./routes/news')
 var health = require('./routes/health')
 require('./passport.js')
-require('./setupdb.js')
 
 const passport = require('passport');
 
