@@ -7,8 +7,6 @@ describe('News DB connection', () => {
         return dbConnect();
     })
 
-    beforeAll()
-
     beforeEach((done) => {
         News.deleteMany({}, (err) => {
             done();
