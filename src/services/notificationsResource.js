@@ -5,9 +5,9 @@ const CircuitBreaker = require('opossum');
 
 class NotificationsResource {
     
-    static subscriptionUrl(resourceUrl) {
-        const susccriptionServer = "https://suscripciones-amaliof96.cloud.okteto.net";
-        return urljoin(susccriptionServer, resourceUrl);
+    static notificationUrl(resourceUrl) {
+        const notificationsServer = "https://suscripciones-amaliof96.cloud.okteto.net";
+        return urljoin(notificationsServer, resourceUrl);
     }
 
     static requestHeaders() {
@@ -19,7 +19,7 @@ class NotificationsResource {
 
 
     static notifyNotificationsService(newsId) {
-        const url = NotificationsResource.susccriptionUrl('api/v1/notifications');
+        const url = NotificationsResource.notificationUrl('api/v1/notifications');
         const options = {
             method: 'POST',
             headers: NotificationsResource.requestHeaders(),
@@ -32,8 +32,8 @@ class NotificationsResource {
         return request.get(url, options);
     }      
 
-    static notifyNotificationsServiceProtected(filmTitle) {
-        breaker.fire(filmTitle);
+    static notifyNotificationsServiceProtected(newsId) {
+        return breaker.fire(newsId);
     }
 
 }
