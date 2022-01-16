@@ -56,9 +56,6 @@ router.post('/', passport.authenticate('localapikey', {session:false}), (req, re
               res.sendStatus(500);
             }
           } else {
-            console.log(news._id)
-            NotificationsResource.notifyNotificationsServiceProtected(news._id.toString());
-
             res.sendStatus(201);
           }
     });
