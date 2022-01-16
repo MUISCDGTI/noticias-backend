@@ -3,10 +3,10 @@ const request = require('request-promise-native').defaults({json: true});
 
 const CircuitBreaker = require('opossum');
 
-class SuscriptionsResource {
+class NotificationsResource {
     
     static subscriptionUrl(resourceUrl) {
-        const susccriptionServer = (process.env.SUSCRIPTION_URL);
+        const susccriptionServer = "https://suscripciones-amaliof96.cloud.okteto.net";
         return urljoin(susccriptionServer, resourceUrl);
     }
 
@@ -17,29 +17,28 @@ class SuscriptionsResource {
         };
     }
 
-    static getAllSubscription() {
-        const url = SubscriptionResource.subscriptionUrl('/subscription');
-        const options = {
-            headers: SubscriptionResource.requestHeaders()
-        }
-        return request.get(url, options);
-    }
 
-    static getRelatedSubscription(filmTitle) {
-        const url = SubscriptionResource.susccriptionUrl('/susccription?title=' + filmTitle);
+    static notifyNotificationsService(newsId) {
+        const url = NotificationsResource.susccriptionUrl('api/v1/notifications');
         const options = {
-            headers: SubscriptionResource.requestHeaders()
+            method: 'POST',
+            headers: NotificationsResource.requestHeaders(),
+            body: {
+                "category" : "Noticia",
+                "referenceId": newsId
+            },
+            json: true
         }
         return request.get(url, options);
     }      
 
-    static getRelatedSubscriptionProtected(filmTitle) {
-        breaker.fire(filmTitle).then(console.log).catch(console.error);
+    static notifyNotificationsServiceProtected(filmTitle) {
+        breaker.fire(filmTitle);
     }
 
 }
 
-const breaker = new CircuitBreaker(SubscriptionResource.getRelatedSubscription, {
+const breaker = new CircuitBreaker(NotificationsResource.notifyNotificationsService, {
     timeout: 5000,
     errorThresholdPercentage: 10,
 });
@@ -51,4 +50,4 @@ breaker.on('open', (result) => console.log("El circuito está abierto"))
 breaker.on('halfOpen', (result) => console.log("El circuito está medio abierto"))
 
 
-module.exports = SubscriptionResource;
+module.exports = NotificationsResource;

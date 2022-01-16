@@ -2,6 +2,8 @@ var stringSimilarity = require("string-similarity");
 
 var mongoose = require('mongoose');
 var FilmsResource = require('../services/filmsResource')
+var NotifcationsResource = require('../services/notificationsResource')
+
 var newsSchema = new mongoose.Schema({
   title: {type: String, required: true},
   description: String,
@@ -23,6 +25,10 @@ newsSchema.pre("save",function(next){
     next();
   })
 });
+
+newsSchema.post("save", function(next) {
+  NotifcationsResource.notifyNotificationsServiceProtected(this.id).then(next());
+})
 
 
 const News = mongoose.model('News', newsSchema);
