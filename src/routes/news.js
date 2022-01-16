@@ -11,16 +11,34 @@ router.use(function timeLog(req, res, next) {
 
 router.get('/', passport.authenticate('localapikey', {session:false}), (req, res) => {
     News.find(req.query, (err, news) => {
-        if (err) { return res.sendStatus(404); }
-        res.status(200).json(news);
+        if (err) {
+            console.log(Date() + " - " + err);
+      
+            if (err.errors) {
+              res.status(400).send({ error: err.message })
+            } else {
+              res.sendStatus(500);
+            }
+        } else {
+            res.status(200).json(news);
+        }
     })
 });
 
 router.get('/:id',passport.authenticate('localapikey', {session:false}), (req, res) => {
     if (req.body) {
         News.findById(req.params.id, (err, news) => {
-            if (news == null || err) { return res.sendStatus(404); }
-            res.status(200).json(news);
+            if (news == null || err) {
+                console.log(Date() + " - " + err);
+          
+                if (err.errors) {
+                  res.status(400).send({ error: err.message })
+                } else {
+                  res.sendStatus(500);
+                }
+            } else {
+                res.status(200).json(news);
+            }
         });
     }
 });
@@ -44,15 +62,33 @@ router.post('/', passport.authenticate('localapikey', {session:false}), (req, re
 
 router.put('/:id', passport.authenticate('localapikey', {session:false}), (req, res) => {
     News.findByIdAndUpdate(req.params.id, req.body, (err, news) => {
-        if (err || news == null) { return res.sendStatus(404); }
-        res.status(200).json(news);
+        if (err || news == null) {
+            console.log(Date() + " - " + err);
+      
+            if (err.errors) {
+              res.status(400).send({ error: err.message })
+            } else {
+              res.sendStatus(500);
+            }
+        } else {
+            res.status(200).json(news);
+        }
     });
 });
 
 router.delete('/:id', passport.authenticate('localapikey', {session:false}), (req, res) => {
     News.findByIdAndRemove(req.params.id, (err, news) => {
-        if (err || news == null) { return res.sendStatus(404); }
+        if (err || news == null) {
+            console.log(Date() + " - " + err);
+      
+            if (err.errors) {
+              res.status(400).send({ error: err.message })
+            } else {
+              res.sendStatus(500);
+            }
+        } else {
         res.status(200).json(news);
+        }
     });
 });
 

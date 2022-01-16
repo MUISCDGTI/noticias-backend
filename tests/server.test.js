@@ -106,7 +106,7 @@ describe("News API", () => {
             .get("/api/v1/news/61e3f651bb7477b9959fe4b2")
             .set('apikey', '1')
             .then((response) => {
-              expect(response.statusCode).toBe(404);
+              expect(response.statusCode).toBe(500);
               expect(response.body).toStrictEqual({});
               expect(dbFindById).toBeCalledWith(
                "61e3f651bb7477b9959fe4b1",
