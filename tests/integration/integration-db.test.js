@@ -13,7 +13,7 @@ describe('News DB connection', () => {
         });
     });
 
-    it('Writes a news item in the DB', (done) => {
+    it('Writes a news item in the DB', async (done) => {
         const news = new News({title: 'Vuelve spiderman', text: 'Prueba de noticia', author:'Jose'});
         news.save((err, news) => {
             expect(err).toBeNull();
@@ -21,7 +21,6 @@ describe('News DB connection', () => {
                 expect(news).toBeArrayOfSize(1);
                 done();
             });
-            done();
         });
     });
 
