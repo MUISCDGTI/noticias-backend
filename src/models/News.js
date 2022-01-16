@@ -12,7 +12,7 @@ var newsSchema = new mongoose.Schema({
   createdAt: {type: Date, default: Date.now},
   relatedMovies: {type: Array, default: []},
   tags: {type: Array, default: []},
-  image: {type: String}
+  urlImagen: {type: String}
 });
 
 newsSchema.pre("save",function(next){
