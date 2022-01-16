@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const dbConnect = require('./db');
-const ApiKey = require('./apikeys');
+const ApiKey = require('./models/apikeys');
 
 dbConnect().then(
     () => {
