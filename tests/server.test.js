@@ -64,7 +64,7 @@ describe("News API", () => {
             const user = {
                 user: "test",
                 apikey: "1"
-            }
+            };
 
             dbCreate = jest.spyOn(News, "create");
 
@@ -85,5 +85,19 @@ describe("News API", () => {
             })
             
         });
+
+        it("should return 500 if there is a problem with the DB", () => {
+            dbCreate.mockImplementation((r, callback) => {
+              callback(true);
+            });
+      
+            return request(app)
+              .post("/api/v1/news")
+              .set('apikey', '1')
+              .send(rating)
+              .then((response) => {
+                expect(response.statusCode).toBe(500);
+              });
+          });
     });
 });
