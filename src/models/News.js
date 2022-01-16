@@ -21,7 +21,7 @@ newsSchema.pre("save",function(next){
       return m.title
     })
     next();
-})
+  })
 });
 
 
