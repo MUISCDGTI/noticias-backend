@@ -94,7 +94,7 @@ describe("News API", () => {
             return request(app)
               .post("/api/v1/news")
               .set('apikey', '1')
-              .send(rating)
+              .send(news)
               .then((response) => {
                 expect(response.statusCode).toBe(500);
               });
