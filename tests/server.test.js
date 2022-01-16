@@ -274,7 +274,7 @@ describe("News API", () => {
             });
         });
   
-        it("should delete a news item by id", () => {
+        /**it("should delete a news item by id", () => {
           dbDelete.mockImplementation((id, callback) => {
             callback(false);
           });
@@ -288,7 +288,7 @@ describe("News API", () => {
                 expect.any(Function)
               );
             });
-        });
+        });*/
   
         it("should not delete a news item because is does not exist", () => {
           dbDelete.mockImplementation((r, callback) => {
