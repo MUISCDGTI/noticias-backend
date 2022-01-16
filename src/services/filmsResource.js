@@ -38,9 +38,9 @@ const breaker = new CircuitBreaker(FilmsResource.getAllFilms(), {
 
 breaker.fallback(() => 'El servicio no está funcionando correctamente.');
 
-breaker.on('reject', (result) => console.log("El circuito está cerrado"))
-breaker.on('open', (result) => console.log("El circuito está abierto"))
-breaker.on('halfOpen', (result) => console.log("El circuito está medio abierto"))
+breaker.on('reject', (result) => {})
+breaker.on('open', (result) => {})
+breaker.on('halfOpen', (result) => {})
 
 
 module.exports = FilmsResource;

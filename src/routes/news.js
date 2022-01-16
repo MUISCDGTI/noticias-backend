@@ -3,7 +3,6 @@ var router = express.Router();
 var News = require('../models/News.js')
 require('../passport.js');
 const passport = require('passport');
-var NotificationsResource = require('../services/notificationsResource')
 
 router.use(function timeLog(req, res, next) {
     console.log('REQUEST /news', Date());
