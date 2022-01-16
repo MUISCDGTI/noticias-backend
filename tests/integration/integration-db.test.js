@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const dbConnect = require('../../src/db');
 const News = require('../../src/models/News')
+const app = require('../../src/server.js')
 
 describe('News DB connection', () => {
     beforeAll(() => {
@@ -26,6 +27,7 @@ describe('News DB connection', () => {
     afterAll((done) => {
         mongoose.connection.db.dropDatabase(() => {
             mongoose.connection.close(done);
+            app.close();
         });
     });
 
