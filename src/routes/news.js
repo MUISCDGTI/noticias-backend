@@ -89,7 +89,7 @@ router.delete('/:id', passport.authenticate('localapikey', {session:false}), (re
               res.sendStatus(500);
             }
         } else {
-            res.status(200).json(news);
+            res.status(500).json(news);
         }
     });
 });
