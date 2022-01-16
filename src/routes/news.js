@@ -27,7 +27,7 @@ router.get('/:id',passport.authenticate('localapikey', {session:false}), (req, r
 
 router.post('/', passport.authenticate('localapikey', {session:false}), (req, res) => {
     News.create(req.body, (err) => {
-        if (err) return res.sendStatus(400);
+        if (err) return res.sendStatus(500);
         res.status(201);
     });
 });
