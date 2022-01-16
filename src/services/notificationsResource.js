@@ -17,7 +17,6 @@ class NotificationsResource {
         };
     }
 
-
     static notifyNotificationsService(newsId) {
         const url = NotificationsResource.notificationUrl('/api/v1/notifications');
         console.log(url);
@@ -30,6 +29,7 @@ class NotificationsResource {
             },
             json: true
         }
+        console.log(options)
         return request.post(url, options);
     }      
 

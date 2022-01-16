@@ -27,6 +27,8 @@ newsSchema.pre("save",function(next){
 });
 
 newsSchema.post("save", function() {
+  console.log("HOLA")
+  console.log(this._id)
   NotificationsResource.notifyNotificationsService(this._id).then((res) => console.log(res));
 })
 
