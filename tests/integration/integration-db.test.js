@@ -21,7 +21,6 @@ describe('News DB connection', () => {
                 expect(news).toBeArrayOfSize(1);
             });
         });
-        done();
     });
 
     afterAll((done) => {
