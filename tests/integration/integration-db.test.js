@@ -7,15 +7,17 @@ describe('News DB connection', () => {
         return dbConnect();
     })
 
+    beforeAll()
+
     beforeEach((done) => {
         News.deleteMany({}, (err) => {
             done();
         });
     });
 
-    it('Writes a news item in the DB', (done) => {
+    it('Writes a news item in the DB', async (done) => {
         const news = new News({title: 'Vuelve spiderman', text: 'Prueba de noticia', author:'Jose'});
-        news.save((err, news) => {
+        await news.save((err, news) => {
             expect(err).toBeNull();
             News.find({}, (err, news) => {
                 expect(news).toBeArrayOfSize(1);
