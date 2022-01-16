@@ -13,7 +13,7 @@ describe('News DB connection', () => {
         });
     });
 
-    it('Writes a news item in the DB', async (done) => {
+    it('Writes a news item in the DB', (done) => {
         const news = new News({title: 'Vuelve spiderman', text: 'Prueba de noticia', author:'Jose'});
         news.save((err, news) => {
             expect(err).toBeNull();
