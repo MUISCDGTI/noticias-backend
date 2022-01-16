@@ -27,7 +27,7 @@ describe('News DB connection', () => {
     afterAll((done) => {
         mongoose.connection.db.dropDatabase(() => {
             mongoose.connection.close(done);
-            app.close();
+            index.close();
         });
     });
 
