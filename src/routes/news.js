@@ -79,8 +79,8 @@ router.put('/:id', passport.authenticate('localapikey', {session:false}), (req, 
 router.delete('/:id', passport.authenticate('localapikey', {session:false}), (req, res) => {
     const id = req.params.id;
 
-    News.deleteOne({ _id: id }, (err, news) => {
-        if (err || news == null) {
+    News.deleteOne({ _id: id }, (err) => {
+        if (error) {
             console.log(Date() + " - " + err);
               res.sendStatus(500);
             
