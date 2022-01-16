@@ -256,7 +256,6 @@ describe("News API", () => {
         beforeAll(() => {
   
             const news = {
-                _id: "1",
                 title: "Nueva pelicula de Spiderman",
                 text: "Proximamente en cines estará disponible la nueva película de Spiderman",
                 author: "Jose Enrique"
@@ -267,7 +266,6 @@ describe("News API", () => {
                 apikey: '1'
               };
         
-    
             dbDelete = jest.spyOn(News, "deleteOne");
 
             auth = jest.spyOn(ApiKey, "findOne");
@@ -281,12 +279,12 @@ describe("News API", () => {
             callback(false);
           });
           return request(app)
-            .delete("/api/v1/news/1")
+            .delete("/api/v1/news/61e3f651bb7477b9959fe4b1")
             .set('apikey', '1')
             .then((response) => {
               expect(response.statusCode).toBe(200);
               expect(dbDelete).toBeCalledWith(
-                { _id: "1" },
+                { _id: "61e3f651bb7477b9959fe4b1" },
                 expect.any(Function)
               );
             });
