@@ -269,6 +269,9 @@ describe("News API", () => {
         
             dbDelete = jest.spyOn(News, "findOneAndRemove");
 
+            dbDelete.mockImplementation((n, callback) => {
+                callback(false, news);
+              });
             auth = jest.spyOn(ApiKey, "findOne");
             auth.mockImplementation((query, callback) => {
               callback(null, new ApiKey(user));
@@ -276,9 +279,6 @@ describe("News API", () => {
         });
   
         it("should delete a news item by id", () => {
-          dbDelete.mockImplementation((n, callback) => {
-            callback(false, news);
-          });
           return request(app)
             .delete("/api/v1/news/1")
             .set('apikey', '1')
@@ -292,9 +292,6 @@ describe("News API", () => {
         });
   
         it("should not delete a news item because is does not exist", () => {
-          dbDelete.mockImplementation((r, callback) => {
-            callback(false, news);
-          });
           return request(app)
             .delete("/api/v1/news/2")
             .set('apikey', '1')
