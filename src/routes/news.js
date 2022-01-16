@@ -28,8 +28,17 @@ router.get('/:id',passport.authenticate('localapikey', {session:false}), (req, r
 router.post('/', passport.authenticate('localapikey', {session:false}), (req, res) => {
     var news = req.body;
     News.create(news, (err) => {
-        if (err) return res.sendStatus(500);
-        res.status(201);
+        if (err) {
+            console.log(Date() + " - " + err);
+      
+            if (err.errors) {
+              res.status(400).send({ error: err.message })
+            } else {
+              res.sendStatus(500);
+            }
+          } else {
+            res.sendStatus(201);
+          }
     });
 });
 
