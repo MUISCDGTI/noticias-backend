@@ -57,13 +57,12 @@ describe("News API", () => {
         const news = {
             title: "Nueva pelicula de Spiderman",
             text: "Proximamente en cines estará disponible la nueva película de Spiderman",
-            author: "Jose Enrique",
+            author: "Jose Enrique"
         };
 
         let dbInsert;
 
         beforeEach(() => {
-            jest.useFakeTimers('legacy')
 
             const user = {
                 user: "test",
@@ -83,7 +82,7 @@ describe("News API", () => {
             dbInsert.mockImplementation((n, callback) => {
                 callback(false);
             });
-            return request(app).post('/api/v1/news').set('apikey', '1').send(news).then((response) => {
+            return request(app).post("/api/v1/news").set('apikey', '1').send(news).then((response) => {
                 expect(response.statusCode).toBe(201);
                 expect(dbInsert).toBeCalledWith(news, expect.any(Function));
             })
