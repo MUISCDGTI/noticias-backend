@@ -1,5 +1,7 @@
-var mongoose = require('mongoose');
+var stringSimilarity = require("string-similarity");
 
+var mongoose = require('mongoose');
+var FilmsResource = require('../services/filmsResource')
 var newsSchema = new mongoose.Schema({
   title: {type: String, required: true},
   description: String,
@@ -10,6 +12,18 @@ var newsSchema = new mongoose.Schema({
   tags: {type: Array, default: []},
   image: {type: String}
 });
+
+newsSchema.pre("save",function(next){
+  FilmsResource.getAllFilmsProtected().then((film) => {
+    const news = this;
+    const relatedMovies = film.filter(f => stringSimilarity.compareTwoStrings("Nueva pelicula de ironman".toLowerCase(), f.title.toLowerCase()) > 0.3)
+    news.relatedMovies = relatedMovies.map((m) => {
+      return m.title
+    })
+    next();
+})
+});
+
 
 const News = mongoose.model('News', newsSchema);
 

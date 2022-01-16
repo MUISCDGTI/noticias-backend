@@ -6,7 +6,7 @@ const CircuitBreaker = require('opossum');
 class FilmsResource {
     
     static filmsUrl(resourceUrl) {
-        const filmsServer = (process.env.FILMS_URL);
+        const filmsServer = "https://api-drorganvidez.cloud.okteto.net";
         return urljoin(filmsServer, resourceUrl);
     }
 
@@ -18,28 +18,20 @@ class FilmsResource {
     }
 
     static getAllFilms() {
-        const url = FilmsResource.filmsUrl('/films');
+        const url = FilmsResource.filmsUrl('api/v1/films/?apikey=06271241-163c-4b95-bcb3-880be1e0be95');
         const options = {
             headers: FilmsResource.requestHeaders()
         }
         return request.get(url, options);
     }
 
-    static getRelatedFilms(filmTitle) {
-        const url = FilmsResource.filmsUrl('/films?title=' + filmTitle);
-        const options = {
-            headers: FilmsResource.requestHeaders()
-        }
-        return request.get(url, options);
-    }      
-
-    static getRelatedFilmsProtected(filmTitle) {
-        breaker.fire(filmTitle).then(console.log).catch(console.error);
+    static getAllFilmsProtected() {
+        return breaker.fire();
     }
 
 }
 
-const breaker = new CircuitBreaker(FilmsResource.getRelatedFilms, {
+const breaker = new CircuitBreaker(FilmsResource.getAllFilms(), {
     timeout: 5000,
     errorThresholdPercentage: 10,
 });

@@ -17,6 +17,7 @@
     "passport": "^0.5.2",
     "passport-localapikey-update": "^0.6.0",
     "request-promise-native": "^1.0.9",
+    "string-similarity": "^4.0.4",
     "swagger-ui-express": "^4.1.6",
     "url-join": "^4.0.1",
     "uuid": "^8.3.2"
