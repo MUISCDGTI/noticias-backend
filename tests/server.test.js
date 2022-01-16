@@ -222,11 +222,11 @@ describe("News API", () => {
           return request(app)
             .put("/api/v1/news/1")
             .set('apikey', '1')
-            .send(1)
+            .send({description : null})
             .then((response) => {
               expect(response.statusCode).toBe(500);
               expect(dbFindOneAndUpdate).toBeCalledWith(
-                1, 1, { runValidators: true },
+                { _id: "1" }, {description : null}, { runValidators: true },
                 expect.any(Function)
               );
             });
@@ -237,13 +237,13 @@ describe("News API", () => {
             callback(true);
           });
           return request(app)
-            .put("/api/v1/news/hola")
+            .put("/api/v1/news/2")
             .set('apikey', '1')
             .send(description)
             .then((response) => {
               expect(response.statusCode).toBe(500);
               expect(dbFindOneAndUpdate).toBeCalledWith(
-               "adios",
+                { _id: "2" },
                 description,
                 { runValidators: true },
                 expect.any(Function)
