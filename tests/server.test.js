@@ -203,7 +203,7 @@ describe("News API", () => {
             .then((response) => {
               expect(response.statusCode).toBe(200);
               expect(dbFindOneAndUpdate).toBeCalledWith(
-                "1", description,{ runValidators: true },
+                { _id: "1" }, description,{ runValidators: true },
                 expect.any(Function)
               );
               expect(response.body).toStrictEqual({
