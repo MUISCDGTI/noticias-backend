@@ -167,4 +167,88 @@ describe("News API", () => {
               });
           });
     });
+
+    describe("PUT /news DESCRIPTION", () => {
+        beforeAll(() => {
+            const news = {
+                _id: "1",
+                title: "Nueva pelicula de Spiderman",
+                text: "Proximamente en cines estará disponible la nueva película de Spiderman",
+                author: "Jose Enrique"
+            };
+          
+            const user = {
+            user : 'test',
+            apikey: '1'
+            };
+    
+            dbFindOneAndUpdate = jest.spyOn(News, "findOneAndUpdate");
+            dbFindOneAndUpdate.mockImplementation((id, body, validator, callback) => {
+                callback(null, news);
+            });
+    
+            auth = jest.spyOn(ApiKey, "findOne");
+            auth.mockImplementation((query, callback) => {
+                callback(null, new ApiKey(user));
+            });
+            });
+    
+        const description = { description: "La mejor pelicula de todos los tiempos" };
+    
+        it("should update a news item description by id", () => {
+          return request(app)
+            .put("/api/v1/news/1")
+            .set('apikey', '1')
+            .send(description)
+            .then((response) => {
+              expect(response.statusCode).toBe(200);
+              expect(dbFindOneAndUpdate).toBeCalledWith(
+                "1", description,{ runValidators: true },
+                expect.any(Function)
+              );
+              expect(response.body).toStrictEqual({
+                _id: "1",
+                title: "Nueva pelicula de Spiderman",
+                text: "Proximamente en cines estará disponible la nueva película de Spiderman",
+                author: "Jose Enrique"
+                });
+            });
+        });
+    
+        it("should not update a rating description by id due to description type", () => {
+          dbFindOneAndUpdate.mockImplementation((r, callback) => {
+            callback(`TypeError: The "string" argument must be of type string or an instance of Buffer or ArrayBuffer. Received type number (1)`, null);
+          });
+          return request(app)
+            .put("/api/v1/news/1")
+            .set('apikey', '1')
+            .send(1)
+            .then((response) => {
+              expect(response.statusCode).toBe(500);
+              expect(dbFindOneAndUpdate).toBeCalledWith(
+                1, 1, { runValidators: true },
+                expect.any(Function)
+              );
+            });
+        });
+    
+        it("should not update a news description by id due to news item does not exist", () => {
+          dbFindOneAndUpdate.mockImplementation((r, callback) => {
+            callback(true);
+          });
+          return request(app)
+            .put("/api/v1/news/hola")
+            .set('apikey', '1')
+            .send(description)
+            .then((response) => {
+              expect(response.statusCode).toBe(500);
+              expect(dbFindOneAndUpdate).toBeCalledWith(
+               "adios",
+                description,
+                { runValidators: true },
+                expect.any(Function)
+              );
+            });
+        });
+      });
 });

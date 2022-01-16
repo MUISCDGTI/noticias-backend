@@ -61,7 +61,7 @@ router.post('/', passport.authenticate('localapikey', {session:false}), (req, re
 });
 
 router.put('/:id', passport.authenticate('localapikey', {session:false}), (req, res) => {
-    News.findByIdAndUpdate(req.params.id, req.body, (err, news) => {
+    News.findByIdAndUpdate(req.params.id, req.body, { runValidators: true}, (err, news) => {
         if (err || news == null) {
             console.log(Date() + " - " + err);
       
