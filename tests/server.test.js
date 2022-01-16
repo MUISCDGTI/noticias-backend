@@ -267,7 +267,7 @@ describe("News API", () => {
   
         it("should delete a news item by id", () => {
           dbDelete.mockImplementation((id, callback) => {
-            callback(null, news);
+            callback(false);
           });
           return request(app)
             .delete("/api/v1/news/1")
@@ -283,7 +283,7 @@ describe("News API", () => {
   
         it("should not delete a news item because is does not exist", () => {
           dbDelete.mockImplementation((r, callback) => {
-            callback(null, news);
+            callback(false);
           });
           return request(app)
             .delete("/api/v1/news/2")
