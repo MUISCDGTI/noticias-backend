@@ -52,4 +52,24 @@ describe("News API", () => {
                 });
         });
     });
+    describe("POST /news", () => {
+        it("Should add a news item", () => {
+            const news = {
+                title: "Nueva pelicula de Spiderman",
+                text: "Proximamente en cines estará disponible la nueva película de Spiderman",
+                author: "Jose Enrique",
+            }
+
+            dbInsert = jest.spyOn(News, "create");
+            dbInsert.mockImplementation((n, callback) => {
+                callback(true);
+            }) 
+
+            return request(app).post('/api/v1/news').send(news).then((response) => {
+                expect(response.statusCode).toBe(201);
+                expect(dbInsert).toBeCalledWith(news, expect.any(Function));
+            })
+            
+        });
+    });
 });
