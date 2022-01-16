@@ -3,6 +3,7 @@ var router = express.Router();
 var News = require('../models/News.js')
 require('../passport.js');
 const passport = require('passport');
+var NotificationsResource = require('../services/notificationsResource')
 
 router.use(function timeLog(req, res, next) {
     console.log('REQUEST /news', Date());
@@ -55,6 +56,9 @@ router.post('/', passport.authenticate('localapikey', {session:false}), (req, re
               res.sendStatus(500);
             }
           } else {
+            console.log(news._id)
+            NotificationsResource.notifyNotificationsServiceProtected(news._id.toString());
+
             res.sendStatus(201);
           }
     });
