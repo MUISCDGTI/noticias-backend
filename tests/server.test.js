@@ -60,13 +60,15 @@ describe("News API", () => {
             author: "Jose Enrique",
         };
 
+        let dbInsert;
+
         beforeEach(() => {
             const user = {
                 user: "test",
                 apikey: "1"
             };
 
-            dbCreate = jest.spyOn(News, "create");
+            dbInsert = jest.spyOn(News, "create");
 
             auth = jest.spyOn(ApiKey, "findOne");
             auth.mockImplementation((query, callback) => {
@@ -76,18 +78,18 @@ describe("News API", () => {
         });
 
         it("Should add a news item", () => {
-            dbCreate.mockImplementation((n, callback) => {
+            dbInsert.mockImplementation((n, callback) => {
                 callback(false);
             });
             return request(app).post('/api/v1/news').set('apikey', '1').send(news).then((response) => {
                 expect(response.statusCode).toBe(201);
-                expect(dbCreate).toBeCalledWith(news, expect.any(Function));
+                expect(dbInsert).toBeCalledWith(news, expect.any(Function));
             })
             
         });
 
         it("should return 500 if there is a problem with the DB", () => {
-            dbCreate.mockImplementation((r, callback) => {
+            dbInsert.mockImplementation((r, callback) => {
               callback(true);
             });
       
