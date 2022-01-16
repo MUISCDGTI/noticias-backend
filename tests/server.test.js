@@ -261,8 +261,19 @@ describe("News API", () => {
                 text: "Proximamente en cines estará disponible la nueva película de Spiderman",
                 author: "Jose Enrique"
             };
+
+            const user = {
+                user : 'test',
+                apikey: '1'
+              };
+        
     
             dbDelete = jest.spyOn(News, "findByIdAndRemove");
+
+            auth = jest.spyOn(ApiKey, "findOne");
+            auth.mockImplementation((query, callback) => {
+              callback(null, new ApiKey(user));
+            });
         });
   
         it("should delete a news item by id", () => {
