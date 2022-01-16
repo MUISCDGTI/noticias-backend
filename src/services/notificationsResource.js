@@ -19,7 +19,7 @@ class NotificationsResource {
 
 
     static notifyNotificationsService(newsId) {
-        const url = NotificationsResource.notificationUrl('api/v1/notifications');
+        const url = NotificationsResource.notificationUrl('/api/v1/notifications');
         const options = {
             method: 'POST',
             headers: NotificationsResource.requestHeaders(),
