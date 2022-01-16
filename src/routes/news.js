@@ -82,12 +82,8 @@ router.delete('/:id', passport.authenticate('localapikey', {session:false}), (re
     News.findOneAndRemove({ _id: id }, (err, news) => {
         if (err || news == null) {
             console.log(Date() + " - " + err);
-      
-            if (err.errors) {
-              res.status(400).send({ error: err.message })
-            } else {
               res.sendStatus(500);
-            }
+            
         } else {
             res.status(200).json(news);
         }
