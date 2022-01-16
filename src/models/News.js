@@ -15,7 +15,7 @@ var newsSchema = new mongoose.Schema({
   image: {type: String}
 });
 
-newsSchema.pre("save",function(next){
+/**newsSchema.pre("save",function(next){
   FilmsResource.getAllFilmsProtected().then((film) => {
     const news = this;
     const relatedMovies = film.filter(f => stringSimilarity.compareTwoStrings(news.title.toLowerCase(), f.title.toLowerCase()) > 0.3)
@@ -30,7 +30,7 @@ newsSchema.post("save", function() {
   console.log(this._id.toString())
   NotificationsResource.notifyNotificationsServiceProtected(this._id.toString());
 })
-
+*/
 
 const News = mongoose.model('News', newsSchema);
 
