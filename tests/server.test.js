@@ -256,6 +256,7 @@ describe("News API", () => {
         beforeAll(() => {
   
             const news = {
+                _id: "1",
                 title: "Nueva pelicula de Spiderman",
                 text: "Proximamente en cines estará disponible la nueva película de Spiderman",
                 author: "Jose Enrique"
@@ -266,7 +267,7 @@ describe("News API", () => {
                 apikey: '1'
               };
         
-            dbDelete = jest.spyOn(News, "deleteOne");
+            dbDelete = jest.spyOn(News, "findOneAndRemove");
 
             auth = jest.spyOn(ApiKey, "findOne");
             auth.mockImplementation((query, callback) => {
@@ -276,15 +277,15 @@ describe("News API", () => {
   
         it("should delete a news item by id", () => {
           dbDelete.mockImplementation((n, callback) => {
-            callback(false);
+            callback(false, news);
           });
           return request(app)
-            .delete("/api/v1/news/61e3f651bb7477b9959fe4b1")
+            .delete("/api/v1/news/1")
             .set('apikey', '1')
             .then((response) => {
               expect(response.statusCode).toBe(200);
               expect(dbDelete).toBeCalledWith(
-                { _id: "61e3f651bb7477b9959fe4b1" },
+                { _id: "1" },
                 expect.any(Function)
               );
             });
@@ -292,7 +293,7 @@ describe("News API", () => {
   
         it("should not delete a news item because is does not exist", () => {
           dbDelete.mockImplementation((r, callback) => {
-            callback(false);
+            callback(false, news);
           });
           return request(app)
             .delete("/api/v1/news/2")

@@ -79,7 +79,7 @@ router.put('/:id', passport.authenticate('localapikey', {session:false}), (req, 
 router.delete('/:id', passport.authenticate('localapikey', {session:false}), (req, res) => {
     const id = req.params.id;
 
-    News.deleteOne({ _id: id }, (err) => {
+    News.findOneAndRemove({ _id: id }, (err, news) => {
         if (err) {
             console.log(Date() + " - " + err);
       
@@ -89,7 +89,7 @@ router.delete('/:id', passport.authenticate('localapikey', {session:false}), (re
               res.sendStatus(500);
             }
         } else {
-            res.sendStatus(200);
+            res.status(200).json(news);
         }
     });
 });
