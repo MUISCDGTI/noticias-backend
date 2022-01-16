@@ -20,6 +20,7 @@ class NotificationsResource {
 
     static notifyNotificationsService(newsId) {
         const url = NotificationsResource.notificationUrl('/api/v1/notifications');
+        console.log(url);
         const options = {
             method: 'POST',
             headers: NotificationsResource.requestHeaders(),
@@ -29,7 +30,7 @@ class NotificationsResource {
             },
             json: true
         }
-        return request.get(url, options);
+        return request.post(url, options);
     }      
 
     static notifyNotificationsServiceProtected(newsId) {
