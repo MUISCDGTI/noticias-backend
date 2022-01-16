@@ -292,6 +292,9 @@ describe("News API", () => {
         });
   
         it("should not delete a news item because is does not exist", () => {
+            dbDelete.mockImplementation((n, callback) => {
+                callback(false, null);
+            });
           return request(app)
             .delete("/api/v1/news/2")
             .set('apikey', '1')
