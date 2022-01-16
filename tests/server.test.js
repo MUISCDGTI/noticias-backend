@@ -66,7 +66,7 @@ describe("News API", () => {
 
             dbInsert = jest.spyOn(News, "create");
             dbInsert.mockImplementation((n, callback) => {
-                callback(true);
+                callback(false);
             }) 
 
             auth = jest.spyOn(ApiKey, "findOne");
