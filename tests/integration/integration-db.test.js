@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const dbConnect = require('../../src/db');
 const News = require('../../src/models/News')
-const app = require('../../src/server.js')
+const index = require('../../src/index')
 
 describe('News DB connection', () => {
     beforeAll(() => {
