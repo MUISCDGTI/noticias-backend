@@ -54,20 +54,31 @@ describe("News API", () => {
     });
     describe("POST /news", () => {
 
-        beforeAll(() => {
-            const news = {
-                title: "Nueva pelicula de Spiderman",
-                text: "Proximamente en cines estará disponible la nueva película de Spiderman",
-                author: "Jose Enrique",
-            };
+        const news = {
+            title: "Nueva pelicula de Spiderman",
+            text: "Proximamente en cines estará disponible la nueva película de Spiderman",
+            author: "Jose Enrique",
+        };
+
+        beforeEach(() => {
+            const user = {
+                user: "test",
+                apikey: "1"
+            }
 
             dbCreate = jest.spyOn(News, "create");
-            dbCreate.mockImplementation((n, callback) => {
-                callback(null, news);
-            }) 
-        })
+
+            auth = jest.spyOn(ApiKey, "findOne");
+            auth.mockImplementation((query, callback) => {
+                callback(null, new ApiKey(user));
+            })
+
+        });
 
         it("Should add a news item", () => {
+            dbCreate.mockImplementation((n, callback) => {
+                callback(false);
+            });
             return request(app).post('/api/v1/news').set('apikey', '1').send(news).then((response) => {
                 expect(response.statusCode).toBe(201);
                 expect(dbCreate).toBeCalledWith(news, expect.any(Function));
