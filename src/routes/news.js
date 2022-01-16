@@ -80,9 +80,9 @@ router.delete('/:id', passport.authenticate('localapikey', {session:false}), (re
     const id = req.params.id;
 
     News.deleteOne({ _id: id }, (err) => {
-        if (error) {
+        if (err) {
             console.log(Date() + " - " + err);
-              res.sendStatus(500);
+            res.sendStatus(500);
             
         } else {
             res.sendStatus(200);
