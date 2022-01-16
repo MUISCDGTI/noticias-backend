@@ -63,6 +63,8 @@ describe("News API", () => {
         let dbInsert;
 
         beforeEach(() => {
+            jest.useFakeTimers('legacy')
+
             const user = {
                 user: "test",
                 apikey: "1"
