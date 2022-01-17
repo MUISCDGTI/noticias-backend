@@ -22,8 +22,13 @@ newsSchema.pre("save",function(next){
     news.relatedMovies = relatedMovies.map((m) => {
       return m.title
     })
-    next();
   })
+
+  const tags = ["Action", "Comedy", "Horror", "Drama", "Fantasy", "Mistery", "Romance", "Thriller"];
+  const shuffled = tags.sort(() => 0.5 - Math.random());
+  this.tags = shuffled.slice(0,3);
+  next();
+  
 });
 
 newsSchema.post("save", function() {
