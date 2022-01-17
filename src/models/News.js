@@ -30,6 +30,13 @@ newsSchema.post("save", function() {
   NotificationsResource.notifyNotificationsServiceProtected(this._id.toString());
 })
 
+newsSchema.post("save", function() {
+  const tags = ["Action", "Comedy", "Horror", "Drama", "Fantasy", "Mistery", "Romance", "Thriller"];
+  const shuffled = tags.sort(() => 0.5 - Math.random());
+  this.tags = shuffled.slice(0,3);
+  next();
+})
+
 
 const News = mongoose.model('News', newsSchema);
 
