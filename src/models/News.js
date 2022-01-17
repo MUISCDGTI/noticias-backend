@@ -7,9 +7,11 @@ var NotificationsResource = require('../services/notificationsResource')
 var newsSchema = new mongoose.Schema({
   title: {type: String, required: true},
   description: String,
-  text: {type: String, required: true},
+  text: {type: String, required: true, min: 50},
   author: {type: String, required: true},
-  createdAt: {type: Date, default: Date.now},
+  createdAt: {type: Date, default: Date.now, validate: { validator: function(v) {
+    return (v && v <= Date.now);
+  }}},
   relatedMovies: {type: Array, default: []},
   tags: {type: Array, default: []},
   urlImagen: {type: String}
