@@ -23,9 +23,6 @@
         "in": "query"
       }
     },
-    "security": {
-      "APIKeyQueryParam": "[]"
-    },
     "consumes": [
       "application/json"
     ],
