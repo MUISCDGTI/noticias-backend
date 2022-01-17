@@ -23,6 +23,11 @@
         "in": "query"
       }
     },
+    "security": [
+      {
+        "APIKeyQueryParam": []
+      }
+    ],
     "consumes": [
       "application/json"
     ],
@@ -31,11 +36,6 @@
     ],
     "paths": {
       "/news": {
-        "security": [
-          {
-            "APIKeyQueryParam": []
-          }
-        ],
         "get": {
           "tags": [
             "News"
