@@ -16,12 +16,10 @@ var newsSchema = new mongoose.Schema({
 });
 
 newsSchema.pre("save",function(next){
-  console.log(this.title)
   FilmsResource.getAllFilmsProtected().then((film) => {
     const news = this;
     const relatedMovies = film.filter(f => stringSimilarity.compareTwoStrings(news.title.toLowerCase(), f.title.toLowerCase()) > 0.3)
     news.relatedMovies = relatedMovies.map((m) => {
-      console.log(m)
       return m.title
     })
     next();
