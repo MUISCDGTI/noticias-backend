@@ -36,7 +36,7 @@ describe('News DB connection', () => {
     it('Not writes a news item in the DB without author', (done) => {
         const news = new News({title: 'Spiderman', text: 'Prueba de noticia'});
         news.save((err, news) => {
-            expect(err.message).toEqual("News validation failed: title: Path `author` is required.")
+            expect(err.message).toEqual("News validation failed: author: Path `author` is required.")
             done();
         });
     });
@@ -44,7 +44,7 @@ describe('News DB connection', () => {
     it('Not writes a news item in the DB without text', (done) => {
         const news = new News({title: 'Spiderman', author:'Jose'});
         news.save((err, news) => {
-            expect(err.message).toEqual("News validation failed: title: Path `text` is required.")
+            expect(err.message).toEqual("News validation failed: text: Path `text` is required.")
             done();
         });
     });
