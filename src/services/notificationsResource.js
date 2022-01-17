@@ -18,7 +18,7 @@ class NotificationsResource {
     }
 
     static notifyNotificationsService(newsId) {
-        const url = NotificationsResource.notificationUrl('/api/v1/notifications');
+        const url = NotificationsResource.notificationUrl('/api/v1/notifications?apikey=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Impvc2UiLCJpYXQiOjE2NDI0MTc3MDZ9.27_J8BZ0ngW3vD7TOaV8cRZol4t8E01-rCWwnhZT-ZI');
         console.log(url);
         const options = {
             method: 'POST',
