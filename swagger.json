@@ -18,7 +18,7 @@
     ],
     "securityDefinitions": {
       "APIKeyQueryParam": {
-        "name": "1ad4ca7f-f0bd-4f36-947b-2effe8a07720",
+        "name": "apikey",
         "type": "apiKey",
         "in": "query"
       }
