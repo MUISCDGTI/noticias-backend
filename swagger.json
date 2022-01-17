@@ -16,6 +16,15 @@
     "schemes": [
       "https"
     ],
+    "securityDefinitions": {
+      "bearerAuth": {
+        "name": "Authorization",
+        "type": "apiKey",
+        "scheme": "Bearer",
+        "in": "header",
+        "description": "Authorization header using the Bearer scheme. \r\n\r\n Enter 'Bearer' [space] and then your token in the text input below.\r\n\r\nExample: \"Bearer superSecureAccessToken\""
+      }
+    },
     "consumes": [
       "application/json"
     ],
@@ -24,16 +33,32 @@
     ],
     "paths": {
       "/news": {
+        "get": {
+          "tags": [
+            "News"
+          ],
+          "summary": "Get all news in system",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/News"
+              }
+            }
+          }
+        },
         "post": {
           "tags": [
             "News"
           ],
+          "summary": "Create a news item in the system",
           "description": "Create news",
           "parameters": [
             {
-              "name": "user",
+              "name": "news",
               "in": "body",
-              "description": "User that we want to create",
+              "description": "News item that we want to create",
+              "required": true,
               "schema": {
                 "$ref": "#/definitions/News"
               }
@@ -45,20 +70,6 @@
           "responses": {
             "200": {
               "description": "New news item is created",
-              "schema": {
-                "$ref": "#/definitions/News"
-              }
-            }
-          }
-        },
-        "get": {
-          "tags": [
-            "News"
-          ],
-          "summary": "Get all news in system",
-          "responses": {
-            "200": {
-              "description": "OK",
               "schema": {
                 "$ref": "#/definitions/News"
               }
@@ -140,21 +151,34 @@
             "type": "string",
             "uniqueItems": true
           },
-          "newsTitle": {
+          "title": {
             "type": "string",
             "uniqueItems": true
           },
-          "newsAuthor": {
+          "text": {
+            "type": "string",
+            "uniqueItems": true
+          },
+          "description": {
+            "type": "string",
+            "uniqueItems": true
+          },
+          "author": {
             "type": "string"
           },
-          "publishedAt": {
+          "urlImagen": {
             "type": "string"
+          },
+          "createdAt": {
+            "type": "date"
+          },
+          "tags": {
+            "type": "array"
+          },
+          "relatedMovies": {
+            "type": "array"
           }
         }
-      },
-      "News": {
-        "type": "array",
-        "$ref": "#/definitions/News"
       }
     }
   }
