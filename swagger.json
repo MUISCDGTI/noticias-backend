@@ -10,20 +10,21 @@
     "tags": [
       {
         "name": "News",
-        "description": "API for news in the system"
+        "description": "News API"
       }
     ],
     "schemes": [
       "https"
     ],
     "securityDefinitions": {
-      "bearerAuth": {
-        "name": "Authorization",
+      "APIKeyQueryParam": {
+        "name": "1ad4ca7f-f0bd-4f36-947b-2effe8a07720",
         "type": "apiKey",
-        "scheme": "Bearer",
-        "in": "header",
-        "description": "Authorization header using the Bearer scheme. \r\n\r\n Enter 'Bearer' [space] and then your token in the text input below.\r\n\r\nExample: \"Bearer superSecureAccessToken\""
+        "in": "query"
       }
+    },
+    "security": {
+      "ApiKeyQueryParam": "[]"
     },
     "consumes": [
       "application/json"
