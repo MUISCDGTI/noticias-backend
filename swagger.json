@@ -47,6 +47,12 @@
               "schema": {
                 "$ref": "#/definitions/News"
               }
+            },
+            "400": {
+              "description": "Bad request"
+            },
+            "500": {
+              "description": "Internal server error"
             }
           }
         },
@@ -76,6 +82,12 @@
               "schema": {
                 "$ref": "#/definitions/News"
               }
+            },
+            "400": {
+              "description": "Bad request"
+            },
+            "500": {
+              "description": "Internal server error"
             }
           }
         }
@@ -101,6 +113,12 @@
               "schema": {
                 "$ref": "#/definitions/News"
               }
+            },
+            "400": {
+              "description": "Bad request"
+            },
+            "500": {
+              "description": "Internal server error"
             }
           }
         },
@@ -115,6 +133,12 @@
               "schema": {
                 "$ref": "#/definitions/News"
               }
+            },
+            "400": {
+              "description": "Bad request"
+            },
+            "500": {
+              "description": "Internal server error"
             }
           }
         },
@@ -139,6 +163,12 @@
               "schema": {
                 "$ref": "#/definitions/News"
               }
+            },
+            "400": {
+              "description": "Bad request"
+            },
+            "500": {
+              "description": "Internal server error"
             }
           }
         }
@@ -173,7 +203,7 @@
             "type": "string"
           },
           "createdAt": {
-            "type": "date"
+            "type": "object"
           },
           "tags": {
             "type": "array"
